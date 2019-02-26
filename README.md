@@ -1,4 +1,4 @@
-# pr3-yssarb-energy-orediction-app
+# pr3-yssarb-energy-prediction-app
 
 Energy Prediction
 Using Machine Learning to Predict Hourly Energy Consumption
