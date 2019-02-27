@@ -26,7 +26,7 @@ mongo = PyMongo(app, uri=mongo_uri)
 
 # Use flask_pymongo to set up mongo connection
 # app.config["MONGO_URI"] = "mongodb+srv://admin:password123?@cluster0-1mrc0.mongodb.net/predictions?retryWrites=true"
-mongo = PyMongo(app, uri=mongo_uri)
+# mongo = PyMongo(app, uri=mongo_uri)
 
 #Loading our ML Model
 xg_boost_model = open("models/reg_model.pickle.dat", "rb")
