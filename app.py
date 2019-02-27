@@ -8,17 +8,25 @@ import pickle as pkl
 import datetime
 from flask_pymongo import PyMongo
 
+import os
+
+if os.environ.get('MONGODB_URI'):
+	MONGO_URI = os.environ.get('MONGODB_URI')
+	flask_debug = False
+else:
+    from dev_config import flask_debug, mongo_uri
+
 #Importing our ML Packages
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.externals import joblib
 
 #Starting our app
 app = Flask(__name__)
-Bootstrap(app)
+mongo = PyMongo(app, uri=mongo_uri)
 
 # Use flask_pymongo to set up mongo connection
-app.config["MONGO_URI"] = "mongodb+srv://admin:password123?@cluster0-1mrc0.mongodb.net/predictions?retryWrites=true"
-mongo = PyMongo(app)
+# app.config["MONGO_URI"] = "mongodb+srv://admin:password123?@cluster0-1mrc0.mongodb.net/predictions?retryWrites=true"
+mongo = PyMongo(app, uri=mongo_uri)
 
 #Loading our ML Model
 xg_boost_model = open("models/reg_model.pickle.dat", "rb")
@@ -91,4 +99,4 @@ def plots():
 	return jsonify(dict(pred))
 
 if __name__ == '__main__':
-	app.run(debug=True)
+	app.run(debug=flask_debug)
