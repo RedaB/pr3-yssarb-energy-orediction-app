@@ -11,7 +11,7 @@ from flask_pymongo import PyMongo
 import os
 
 if os.environ.get('MONGODB_URI'):
-	MONGO_URI = os.environ.get('MONGODB_URI')
+	mongo_uri = os.environ.get('MONGODB_URI')
 	flask_debug = False
 else:
     from dev_config import flask_debug, mongo_uri
