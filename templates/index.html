@@ -136,16 +136,22 @@
             <div class="row">
                 <div class="col-lg-12">
                     <br>
-                    <h1><u>Predicting Hourly Energy</u></h1>
+                    <h1 id="pred-title"><u>Predicting Hourly Energy</u></h1>
                     <br>
+
+                    <!-- <img id="pred-img" src="static/img/predict.png"> -->
+                    
                     <h4>Please enter the number of hours you'd like to predict energy consumption for from now!</h4>
                     <!-- Main Input For Receiving Query to our ML -->	
                     <form action="{{ url_for('predict')}}" method="POST">
                         <input type="text" name="number_of_hours">
-                        <button type="submit" class="btn btn-primary">Predict</button>
+                        <button type="submit" class="btn btn-primary" id="pred">Predict</button>
                     </form>
                     <br>    
                     <!-- Adding our plot -->
+                    <!-- <iframe src="https://giphy.com/embed/3ohzdZ2bLtafnLi82A" width="338" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe> -->
+                   
+                    <br>        
                     <div id="bar"></div>
                 </div>
             </div>

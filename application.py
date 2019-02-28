@@ -21,8 +21,8 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.externals import joblib
 
 #Starting our app
-app = Flask(__name__)
-mongo = PyMongo(app, uri=mongo_uri)
+application = Flask(__name__)
+mongo = PyMongo(application, uri=mongo_uri)
 
 # Use flask_pymongo to set up mongo connection
 # app.config["MONGO_URI"] = "mongodb+srv://admin:password123?@cluster0-1mrc0.mongodb.net/predictions?retryWrites=true"
@@ -55,12 +55,12 @@ def create_features(df, label=None):
     return X
 
 #Creating return template end-point
-@app.route('/')
+@application.route('/')
 def index():
 	return render_template('index.html')
 
 #Creating Prediction end-point
-@app.route('/predict', methods=['POST'])
+@application.route('/predict', methods=['POST'])
 def predict():
 	
 	#Receiving the input query from form
@@ -86,17 +86,17 @@ def predict():
 		prep_dict = {'x':x, 'y':y}
 		
 		#Adding our predicted data to our database
-		print(prediction_dictionary)
+		# print(prediction_dictionary)
 		predictions = mongo.db.predictions
 		predictions.update({}, prep_dict, upsert=True)
 	return redirect('/#predict', code=302)
 
 #Creating plot end-point
-@app.route('/plots')
+@application.route('/plots')
 def plots():
 	pred = mongo.db.predictions.find_one({}, {"_id":False})
-	print(pred)
+	# print(pred)
 	return jsonify(dict(pred))
 
 if __name__ == '__main__':
-	app.run(debug=flask_debug)
+	application.run(debug=flask_debug)

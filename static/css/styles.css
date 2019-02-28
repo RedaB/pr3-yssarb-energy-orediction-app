@@ -12,6 +12,15 @@
 	
 }
 
+#pred-img {
+	height: 250px;
+	width: 500px;
+	padding-bottom: 25px;
+}
+
+#pred-title {
+	padding-bottom: 100px;
+}
 /* #table {
 	float:right;
 } */

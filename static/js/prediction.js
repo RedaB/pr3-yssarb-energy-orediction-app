@@ -1,31 +1,31 @@
 
 // Creating our plot
 d3.json("/plots").then(response => {
-    console.log(data)
-  
+  console.log(data)
+
   var trace1 = {
     x: response.x,
     y: response.y,
     name: 'MGW',
     type: 'bar'
   };
-  
+
   var data = [trace1];
     
   var layout = {
     title: 'Your Hourly Energy Consumption',
     xaxis: {
     title:  "Range of Date & Hours"
-       },
+      },
     yaxis: {
       title: "MGW"
-     }
+    }
   };
 
   Plotly.newPlot('bar', data, layout);
 
-  
-// Creating our table
+
+  // Creating our table
   tbody=d3.select("tbody");
   tbody.html("");
   for (var i = 0; i < response.x.length; i++){
@@ -36,3 +36,9 @@ d3.json("/plots").then(response => {
 });
 
 
+// d3.select("#pred").on("click", () => {
+//   d3.event.preventDefault();
+//   // d3.select("iframe").remove();
+
+
+// });
